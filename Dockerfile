@@ -15,7 +15,7 @@ RUN add-apt-repository \
 RUN apt-get update -y
 RUN apt-get install -y docker-ce
 RUN usermod -aG docker jenkins
-RUN chkconfig docker on
+RUN systemctl enable docker
 RUN docker ps
 
 ARG JENKINS_REMOTING_VERSION=3.5
