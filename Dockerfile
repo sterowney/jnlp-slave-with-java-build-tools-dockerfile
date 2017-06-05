@@ -13,7 +13,7 @@ RUN add-apt-repository \
    $(lsb_release -cs) \
    stable"
 RUN apt-get update -y
-RUN apt-get install docker-ce
+RUN apt-get install -y docker-ce
 RUN groupadd docker
 RUN usermod -aG docker jenkins
 RUN chkconfig docker on
