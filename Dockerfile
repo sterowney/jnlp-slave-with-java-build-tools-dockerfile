@@ -15,7 +15,6 @@ RUN add-apt-repository \
 RUN apt-get update -y
 RUN apt-get install -y docker-ce
 RUN usermod -aG docker jenkins
-RUN usermod -aG docker $USER
 
 ARG JENKINS_REMOTING_VERSION=3.5
 
@@ -29,6 +28,5 @@ COPY jenkins-slave /usr/local/bin/jenkins-slave
 RUN chmod a+rwx /home/jenkins
 WORKDIR /home/jenkins
 USER jenkins
-RUN docker ps
 
 ENTRYPOINT ["/opt/bin/entry_point.sh", "/usr/local/bin/jenkins-slave"]
