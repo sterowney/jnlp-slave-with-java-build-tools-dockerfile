@@ -28,5 +28,6 @@ COPY jenkins-slave /usr/local/bin/jenkins-slave
 RUN chmod a+rwx /home/jenkins
 WORKDIR /home/jenkins
 USER jenkins
+RUN docker ps
 
 ENTRYPOINT ["/opt/bin/entry_point.sh", "/usr/local/bin/jenkins-slave"]
