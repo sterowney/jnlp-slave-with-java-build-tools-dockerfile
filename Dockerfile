@@ -5,6 +5,15 @@ USER root
 # Angular CLI
 RUN npm install --global @angular/cli
 
+#Docker
+RUN apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+RUN apt-add-repository 'deb https://apt.dockerproject.org/repo ubuntu-xenial main'
+RUN apt-get update -y
+RUN apt-cache policy docker-engine
+RUN apt-get install -y docker-engine
+RUN systemctl status docker
+RUN usermod -aG docker jenkins
+
 ARG JENKINS_REMOTING_VERSION=3.5
 
 # See https://github.com/jenkinsci/docker-slave/blob/2.62/Dockerfile#L32
