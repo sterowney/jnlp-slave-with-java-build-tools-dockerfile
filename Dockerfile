@@ -7,6 +7,7 @@ RUN npm install --global @angular/cli
 
 #Docker
 USER root
+RUN groupadd docker
 # To install, run the following commands as root:
 RUN curl -fsSLO https://get.docker.com/builds/Linux/x86_64/docker-17.05.0-ce.tgz && tar --strip-components=1 -xvzf docker-17.05.0-ce.tgz -C /usr/local/bin
 
