@@ -5,7 +5,7 @@ USER root
 # Angular CLI
 RUN npm install --global @angular/cli
 
-RUN apt-get install -y docker.io
+RUN apt-get install -y docker
 RUN systemctl start docker
 RUN systemctl enable docker
 RUN usermod -a -G docker jenkins
