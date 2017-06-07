@@ -5,10 +5,17 @@ USER root
 # Angular CLI
 RUN npm install --global @angular/cli
 
-RUN apt-get install -y docker
-RUN systemctl start docker
+RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+RUN apt-key fingerprint 0EBFCD88
+RUN add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+RUN apt-get update -y
+RUN apt-get install docker-ce -y
+RUN usermod -aG docker jenkins
 RUN systemctl enable docker
-RUN usermod -a -G docker jenkins
+RUN service docker start
 
 ARG JENKINS_REMOTING_VERSION=3.5
 
@@ -22,5 +29,6 @@ COPY jenkins-slave /usr/local/bin/jenkins-slave
 RUN chmod a+rwx /home/jenkins
 WORKDIR /home/jenkins
 USER jenkins
+
 
 ENTRYPOINT ["/opt/bin/entry_point.sh", "/usr/local/bin/jenkins-slave"]
