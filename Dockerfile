@@ -5,14 +5,10 @@ USER root
 # Angular CLI
 RUN npm install --global @angular/cli
 
-#Docker
-USER root
-RUN groupadd docker
-# To install, run the following commands as root:
-RUN curl -fsSLO https://get.docker.com/builds/Linux/x86_64/docker-17.05.0-ce.tgz && tar --strip-components=1 -xvzf docker-17.05.0-ce.tgz -C /usr/local/bin
-
-# Then start docker in daemon mode:
-RUN /usr/local/bin/dockerd
+RUN apt-get install -y docker.io
+RUN systemctl start docker
+RUN systemctl enable docker
+RUN usermod -a -G docker jenkins
 
 ARG JENKINS_REMOTING_VERSION=3.5
 
