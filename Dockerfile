@@ -16,6 +16,7 @@ RUN apt-get install docker-ce -y
 RUN usermod -aG docker jenkins
 RUN systemctl enable docker
 RUN service docker start
+RUN apt-get install sudo -y
 
 ARG JENKINS_REMOTING_VERSION=3.5
 
