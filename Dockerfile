@@ -19,6 +19,9 @@ RUN curl --create-dirs -sSLo /usr/share/jenkins/slave.jar https://repo.jenkins-c
 
 COPY jenkins-slave /usr/local/bin/jenkins-slave
 
+# Angular CLI
+RUN npm install --global @angular/cli
+
 RUN groupadd docker
 RUN usermod -a -G docker jenkins
 RUN chmod a+rwx /home/jenkins
